@@ -102,6 +102,7 @@
             z-index: 1;
             overflow: hidden;
             padding: 0;
+            text-decoration: none;
         }
 
         .nav-button::before {
@@ -136,7 +137,7 @@
 
         /* Five evenly distributed buttons */
 
-        /* Top */
+        /* Top - Email */
 
         .nav-button--top {
             transform: rotate(0deg) translateY(-175px) rotate(0deg);
@@ -160,7 +161,7 @@
             transform: rotate(216deg) translateY(-175px) rotate(-216deg);
         }
 
-        /* Middle Right - Email */
+        /* Middle Right - Telegram */
 
         .nav-button--email {
             transform: rotate(288deg) translateY(-175px) rotate(-288deg);
@@ -511,16 +512,17 @@
                 >
             </div>
 
-            <!-- Top -->
+            <!-- Top - Email -->
 
             <button
                 class="nav-button nav-button--top"
+                id="emailButton"
                 type="button"
-                aria-label="Navigation 1"
+                aria-label="Email"
             >
                 <img
                     src="Assets/IMG_db45c11d-e28c-4dd8-95da-6f7f124c09cc.png"
-                    alt="Navigation 1"
+                    alt="Email"
                 >
             </button>
 
@@ -565,17 +567,17 @@
                 >
             </button>
 
-            <!-- Middle Right - Email -->
+            <!-- Middle Right - Telegram -->
 
             <button
                 class="nav-button nav-button--email"
-                id="emailButton"
                 type="button"
-                aria-label="Email"
+                aria-label="Telegram"
+                onclick="window.open('https://t.me/Noone6201', '_blank', 'noopener,noreferrer')"
             >
                 <img
                     src="Assets/IMG_13e736d6-caf9-47fa-84be-ae8eab985e94-removebg-preview.png"
-                    alt="Email"
+                    alt="Telegram"
                 >
             </button>
 
@@ -646,7 +648,7 @@
                 class="email-address"
                 id="emailAddress"
             >
-                YOUR_EMAIL@example.com
+                Mr.QRZ6101@gmail.com
             </div>
 
             <!-- Actions -->
@@ -698,9 +700,9 @@
 
     <script>
 
-        // Change this to your real email address
+        // Email configuration
 
-        const MY_EMAIL = "YOUR_EMAIL@example.com";
+        const MY_EMAIL = "Mr.QRZ6101@gmail.com";
 
 
         // Elements
