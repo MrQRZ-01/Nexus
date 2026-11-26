@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,22 +59,35 @@
             align-items: center;
         }
 
-        /* Center circle */
+        /* Center image */
 
         .center-circle {
             width: 150px;
             height: 150px;
 
-            border-radius: 50%;
             position: absolute;
             z-index: 2;
 
-            background: rgba(147, 51, 234, 0.65);
-            border: 2px solid rgba(216, 180, 254, 0.8);
+            border-radius: 50%;
+            overflow: hidden;
+
+            border: 2px solid rgba(190, 202, 218, 0.8);
 
             box-shadow:
-                0 0 30px rgba(147, 51, 234, 0.4),
-                inset 0 0 20px rgba(255, 255, 255, 0.15);
+                0 0 25px rgba(140, 160, 185, 0.2),
+                inset 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .center-circle img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center;
+
+            border-radius: 50%;
         }
 
         /* Matte Steel Glass Navigation Buttons */
@@ -225,7 +238,16 @@
 
         <div class="navigation">
 
-            <div class="center-circle"></div>
+            <!-- Center Image -->
+
+            <div class="center-circle">
+                <img
+                    src="Assets/file_00000000e9c081f4bb2c92e2cebfc171.png"
+                    alt="Nexus"
+                >
+            </div>
+
+            <!-- Navigation Buttons -->
 
             <button class="nav-button" aria-label="Navigation 1"></button>
             <button class="nav-button" aria-label="Navigation 2"></button>
@@ -242,4 +264,4 @@
     <script src="https://cdn.aidesigner.ai/effects/runtime/v1.js" defer></script>
 
 </body>
-</html>      
+</html>                               
