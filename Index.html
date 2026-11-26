@@ -1,9 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus</title>
+    <title>NEXUS</title>
 
     <style>
         * {
@@ -12,176 +12,149 @@
             box-sizing: border-box;
         }
 
-        html,
         body {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             overflow: hidden;
             background: #050505;
+            font-family: Arial, sans-serif;
         }
-
-        /* Main container */
 
         .main {
             position: relative;
-            isolation: isolate;
             width: 100%;
             height: 100vh;
             height: 100dvh;
-            overflow: hidden;
-            background: #050505;
-
             display: flex;
             justify-content: center;
             align-items: center;
+            isolation: isolate;
+            overflow: hidden;
+            background: #050505;
         }
-
-        /* Liquid Metal Background */
-
-        .main [data-aifx="liquid-metal"] {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation container */
 
         .navigation {
             position: relative;
             width: min(90vw, 560px);
             aspect-ratio: 1 / 1;
-
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Center image */
+        /* Center profile image */
 
         .center-circle {
+            position: absolute;
             width: 150px;
             height: 150px;
-
-            position: absolute;
             z-index: 2;
-
             border-radius: 50%;
             overflow: hidden;
-
             border: 2px solid rgba(190, 202, 218, 0.8);
-
             box-shadow:
-                0 0 25px rgba(140, 160, 185, 0.2),
-                inset 0 0 15px rgba(255, 255, 255, 0.15);
+                0 0 20px rgba(190, 202, 218, 0.12),
+                inset 0 0 12px rgba(255, 255, 255, 0.12);
         }
 
         .center-circle img {
+            display: block;
             width: 100%;
             height: 100%;
-
-            display: block;
-
             object-fit: cover;
             object-position: center;
-
             border-radius: 50%;
         }
 
-        /* Matte Steel Glass Navigation Buttons */
+        /* Navigation buttons */
 
         .nav-button {
             position: absolute;
-
             width: 82px;
             height: 82px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             border-radius: 50%;
             border: 1px solid rgba(190, 202, 218, 0.65);
 
             background: rgba(89, 101, 117, 0.78);
-
             backdrop-filter: blur(18px) saturate(140%);
             -webkit-backdrop-filter: blur(18px) saturate(140%);
 
+            color: #f0f2f5;
+            font-size: 12px;
+            letter-spacing: 1px;
+
             box-shadow:
-                inset 0 1px 3px rgba(255, 255, 255, 0.22),
-                inset 0 -3px 8px rgba(15, 20, 28, 0.25),
-                0 8px 25px rgba(0, 0, 0, 0.4);
+                0 8px 25px rgba(0, 0, 0, 0.35),
+                inset 0 1px 2px rgba(255, 255, 255, 0.25),
+                inset 0 -5px 12px rgba(0, 0, 0, 0.18);
 
             cursor: pointer;
-
             transition:
                 transform 0.3s ease,
                 background 0.3s ease,
-                border-color 0.3s ease,
                 box-shadow 0.3s ease;
-        }
 
-        /* Subtle Glass Reflection */
+            z-index: 1;
+        }
 
         .nav-button::before {
             content: "";
             position: absolute;
-            inset: 5px;
-
+            inset: 4px;
             border-radius: 50%;
-            border-top: 1px solid rgba(235, 241, 250, 0.45);
-
-            opacity: 0.7;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             pointer-events: none;
         }
 
-        /* Circular positioning - 72 degrees apart */
+        .nav-button:hover {
+            background: rgba(112, 126, 145, 0.9);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.45),
+                0 0 18px rgba(190, 202, 218, 0.18),
+                inset 0 1px 3px rgba(255, 255, 255, 0.3);
+
+            transform: translateY(-175px) scale(1.1);
+        }
 
         .nav-button:nth-child(2) {
-            transform: rotate(0deg) translateY(-175px);
+            transform: rotate(72deg) translateY(-175px) rotate(-72deg);
         }
 
         .nav-button:nth-child(3) {
-            transform: rotate(72deg) translateY(-175px);
+            transform: rotate(144deg) translateY(-175px) rotate(-144deg);
         }
 
         .nav-button:nth-child(4) {
-            transform: rotate(144deg) translateY(-175px);
+            transform: rotate(216deg) translateY(-175px) rotate(-216deg);
         }
 
         .nav-button:nth-child(5) {
-            transform: rotate(216deg) translateY(-175px);
+            transform: rotate(288deg) translateY(-175px) rotate(-288deg);
         }
-
-        .nav-button:nth-child(6) {
-            transform: rotate(288deg) translateY(-175px);
-        }
-
-        /* Hover effects */
 
         .nav-button:nth-child(2):hover {
-            transform: rotate(0deg) translateY(-175px) scale(1.1);
+            transform: rotate(72deg) translateY(-175px) rotate(-72deg) scale(1.1);
         }
 
         .nav-button:nth-child(3):hover {
-            transform: rotate(72deg) translateY(-175px) scale(1.1);
+            transform: rotate(144deg) translateY(-175px) rotate(-144deg) scale(1.1);
         }
 
         .nav-button:nth-child(4):hover {
-            transform: rotate(144deg) translateY(-175px) scale(1.1);
+            transform: rotate(216deg) translateY(-175px) rotate(-216deg) scale(1.1);
         }
 
         .nav-button:nth-child(5):hover {
-            transform: rotate(216deg) translateY(-175px) scale(1.1);
+            transform: rotate(288deg) translateY(-175px) rotate(-288deg) scale(1.1);
         }
 
-        .nav-button:nth-child(6):hover {
-            transform: rotate(288deg) translateY(-175px) scale(1.1);
-        }
+        /* Mobile */
 
-        /* Responsive design */
-
-        @media (max-width: 500px) {
-
+        @media (max-width: 600px) {
             .center-circle {
                 width: 120px;
                 height: 120px;
@@ -190,34 +163,34 @@
             .nav-button {
                 width: 68px;
                 height: 68px;
+                font-size: 10px;
+            }
+
+            .nav-button,
+            .nav-button:hover {
+                transform: translateY(-125px);
             }
 
             .nav-button:nth-child(2),
             .nav-button:nth-child(2):hover {
-                transform: rotate(0deg) translateY(-125px);
+                transform: rotate(72deg) translateY(-125px) rotate(-72deg);
             }
 
             .nav-button:nth-child(3),
             .nav-button:nth-child(3):hover {
-                transform: rotate(72deg) translateY(-125px);
+                transform: rotate(144deg) translateY(-125px) rotate(-144deg);
             }
 
             .nav-button:nth-child(4),
             .nav-button:nth-child(4):hover {
-                transform: rotate(144deg) translateY(-125px);
+                transform: rotate(216deg) translateY(-125px) rotate(-216deg);
             }
 
             .nav-button:nth-child(5),
             .nav-button:nth-child(5):hover {
-                transform: rotate(216deg) translateY(-125px);
-            }
-
-            .nav-button:nth-child(6),
-            .nav-button:nth-child(6):hover {
-                transform: rotate(288deg) translateY(-125px);
+                transform: rotate(288deg) translateY(-125px) rotate(-288deg);
             }
         }
-
     </style>
 </head>
 
@@ -226,29 +199,29 @@
     <main class="main">
 
         <!-- Liquid Metal Background -->
-
         <div
             data-aifx="liquid-metal"
             data-aifx-speed="0.25"
             data-aifx-mouse="0"
-            aria-hidden="true"
+            style="
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+            "
         ></div>
 
         <!-- Navigation -->
-
         <div class="navigation">
 
-            <!-- Center Image -->
-
+            <!-- Updated Profile Image -->
             <div class="center-circle">
                 <img
-                    src="Assets/file_00000000e9c081f4bb2c92e2cebfc171.png"
+                    src="Assets/file_00000000577c820aa374caf6c67715aa.png"
                     alt="Nexus"
                 >
             </div>
 
             <!-- Navigation Buttons -->
-
             <button class="nav-button" aria-label="Navigation 1"></button>
             <button class="nav-button" aria-label="Navigation 2"></button>
             <button class="nav-button" aria-label="Navigation 3"></button>
@@ -256,12 +229,12 @@
             <button class="nav-button" aria-label="Navigation 5"></button>
 
         </div>
-
     </main>
 
-    <!-- AIDesigner Runtime -->
-
-    <script src="https://cdn.aidesigner.ai/effects/runtime/v1.js" defer></script>
+    <script
+        src="https://cdn.aidesigner.ai/effects/runtime/v1.js"
+        defer
+    ></script>
 
 </body>
-</html>                               
+</html>
