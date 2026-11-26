@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,39 +117,49 @@
                 0 10px 30px rgba(0, 0, 0, 0.45),
                 0 0 18px rgba(190, 202, 218, 0.18),
                 inset 0 1px 3px rgba(255, 255, 255, 0.3);
-
-            transform: translateY(-175px) scale(1.1);
         }
 
-        .nav-button:nth-child(2) {
+        /* Five evenly distributed buttons */
+
+        .nav-button:nth-of-type(1) {
+            transform: rotate(0deg) translateY(-175px) rotate(0deg);
+        }
+
+        .nav-button:nth-of-type(2) {
             transform: rotate(72deg) translateY(-175px) rotate(-72deg);
         }
 
-        .nav-button:nth-child(3) {
+        .nav-button:nth-of-type(3) {
             transform: rotate(144deg) translateY(-175px) rotate(-144deg);
         }
 
-        .nav-button:nth-child(4) {
+        .nav-button:nth-of-type(4) {
             transform: rotate(216deg) translateY(-175px) rotate(-216deg);
         }
 
-        .nav-button:nth-child(5) {
+        .nav-button:nth-of-type(5) {
             transform: rotate(288deg) translateY(-175px) rotate(-288deg);
         }
 
-        .nav-button:nth-child(2):hover {
+        /* Hover effects */
+
+        .nav-button:nth-of-type(1):hover {
+            transform: rotate(0deg) translateY(-175px) rotate(0deg) scale(1.1);
+        }
+
+        .nav-button:nth-of-type(2):hover {
             transform: rotate(72deg) translateY(-175px) rotate(-72deg) scale(1.1);
         }
 
-        .nav-button:nth-child(3):hover {
+        .nav-button:nth-of-type(3):hover {
             transform: rotate(144deg) translateY(-175px) rotate(-144deg) scale(1.1);
         }
 
-        .nav-button:nth-child(4):hover {
+        .nav-button:nth-of-type(4):hover {
             transform: rotate(216deg) translateY(-175px) rotate(-216deg) scale(1.1);
         }
 
-        .nav-button:nth-child(5):hover {
+        .nav-button:nth-of-type(5):hover {
             transform: rotate(288deg) translateY(-175px) rotate(-288deg) scale(1.1);
         }
 
@@ -166,29 +177,44 @@
                 font-size: 10px;
             }
 
-            .nav-button,
-            .nav-button:hover {
-                transform: translateY(-125px);
+            .nav-button:nth-of-type(1) {
+                transform: rotate(0deg) translateY(-125px) rotate(0deg);
             }
 
-            .nav-button:nth-child(2),
-            .nav-button:nth-child(2):hover {
+            .nav-button:nth-of-type(2) {
                 transform: rotate(72deg) translateY(-125px) rotate(-72deg);
             }
 
-            .nav-button:nth-child(3),
-            .nav-button:nth-child(3):hover {
+            .nav-button:nth-of-type(3) {
                 transform: rotate(144deg) translateY(-125px) rotate(-144deg);
             }
 
-            .nav-button:nth-child(4),
-            .nav-button:nth-child(4):hover {
+            .nav-button:nth-of-type(4) {
                 transform: rotate(216deg) translateY(-125px) rotate(-216deg);
             }
 
-            .nav-button:nth-child(5),
-            .nav-button:nth-child(5):hover {
+            .nav-button:nth-of-type(5) {
                 transform: rotate(288deg) translateY(-125px) rotate(-288deg);
+            }
+
+            .nav-button:nth-of-type(1):hover {
+                transform: rotate(0deg) translateY(-125px) rotate(0deg) scale(1.1);
+            }
+
+            .nav-button:nth-of-type(2):hover {
+                transform: rotate(72deg) translateY(-125px) rotate(-72deg) scale(1.1);
+            }
+
+            .nav-button:nth-of-type(3):hover {
+                transform: rotate(144deg) translateY(-125px) rotate(-144deg) scale(1.1);
+            }
+
+            .nav-button:nth-of-type(4):hover {
+                transform: rotate(216deg) translateY(-125px) rotate(-216deg) scale(1.1);
+            }
+
+            .nav-button:nth-of-type(5):hover {
+                transform: rotate(288deg) translateY(-125px) rotate(-288deg) scale(1.1);
             }
         }
     </style>
@@ -213,7 +239,7 @@
         <!-- Navigation -->
         <div class="navigation">
 
-            <!-- Updated Profile Image -->
+            <!-- Profile Image -->
             <div class="center-circle">
                 <img
                     src="Assets/file_00000000577c820aa374caf6c67715aa.png"
@@ -221,7 +247,7 @@
                 >
             </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Five Navigation Buttons -->
             <button class="nav-button" aria-label="Navigation 1"></button>
             <button class="nav-button" aria-label="Navigation 2"></button>
             <button class="nav-button" aria-label="Navigation 3"></button>
