@@ -13,24 +13,25 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background: #050505;
         }
 
-        .smoke-background {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        .main {
+            position: relative;
             isolation: isolate;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
             background: #050505;
         }
 
-        .smoke-background [data-aifx="fluid-smoke"] {
+        .main [data-aifx="liquid-metal"] {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -42,23 +43,18 @@
 
 <body>
 
-    <main class="smoke-background">
+    <main class="main">
 
+        <!-- Liquid Metal Background -->
         <div
-            data-aifx="fluid-smoke"
-            data-aifx-bg="#050505"
-            data-aifx-speed="0.25"
-            data-aifx-scale="1.25"
-            data-aifx-warp="0.7"
-            data-aifx-swirl="0.2"
-            data-aifx-contrast="1.5"
-            data-aifx-softness="0.85"
-            data-aifx-mouse="0.1"
+            data-aifx="liquid-metal"
+            data-aifx-speed="0.4"
             aria-hidden="true"
         ></div>
 
     </main>
 
+    <!-- AIDesigner Runtime -->
     <script src="https://cdn.aidesigner.ai/effects/runtime/v1.js" defer></script>
 
 </body>
