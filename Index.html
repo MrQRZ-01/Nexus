@@ -19,223 +19,447 @@
             overflow: hidden;
             background: #050505;
             font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
 
-        .main {
+        /* Background lighting */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            background:
+                radial-gradient(circle at 50% 45%,
+                    rgba(100, 65, 180, 0.17),
+                    transparent 35%),
+                radial-gradient(circle at 20% 80%,
+                    rgba(50, 65, 110, 0.12),
+                    transparent 35%),
+                radial-gradient(circle at 85% 15%,
+                    rgba(90, 65, 130, 0.10),
+                    transparent 30%);
+            filter: blur(55px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Main container */
+
+        .main-container {
             position: relative;
             width: 100%;
             height: 100vh;
-            height: 100dvh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            isolation: isolate;
-            overflow: hidden;
-            background: #050505;
+            justify-content: center;
+            z-index: 1;
         }
 
-        .navigation {
+        .orbit-container {
             position: relative;
-            width: min(90vw, 560px);
-            aspect-ratio: 1 / 1;
+            width: 460px;
+            height: 460px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        /* Center profile image */
+        /* Center circle */
 
         .center-circle {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            z-index: 2;
+            width: 175px;
+            height: 175px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid rgba(190, 202, 218, 0.8);
+            position: relative;
+            z-index: 3;
+
+            background: rgba(40, 35, 60, 0.45);
+            border: 1px solid rgba(190, 170, 255, 0.35);
+
             box-shadow:
-                0 0 20px rgba(190, 202, 218, 0.12),
-                inset 0 0 12px rgba(255, 255, 255, 0.12);
+                0 0 35px rgba(125, 85, 220, 0.28),
+                inset 0 0 25px rgba(255,255,255,0.08);
         }
 
         .center-circle img {
-            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
             border-radius: 50%;
+        }
+
+        /* Orbit */
+
+        .orbit {
+            position: absolute;
+            width: 390px;
+            height: 390px;
+            border-radius: 50%;
+            border: 1px dashed rgba(200, 190, 230, 0.20);
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Navigation buttons */
 
         .nav-button {
             position: absolute;
-            width: 82px;
-            height: 82px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
+            width: 76px;
+            height: 76px;
             border-radius: 50%;
-            border: 1px solid rgba(190, 202, 218, 0.65);
 
-            background: rgba(89, 101, 117, 0.78);
-            backdrop-filter: blur(18px) saturate(140%);
-            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            color: #f0f2f5;
-            font-size: 12px;
-            letter-spacing: 1px;
+            background: rgba(180, 180, 200, 0.10);
+            border: 1px solid rgba(220, 220, 240, 0.25);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
 
             box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.35),
-                inset 0 1px 2px rgba(255, 255, 255, 0.25),
-                inset 0 -5px 12px rgba(0, 0, 0, 0.18);
+                inset 0 1px 2px rgba(255,255,255,0.12),
+                0 5px 20px rgba(0,0,0,0.35);
+
+            transition:
+                transform 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
 
             cursor: pointer;
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease,
-                box-shadow 0.3s ease;
-
-            z-index: 1;
-            overflow: hidden;
+            z-index: 4;
+            text-decoration: none;
+            outline: none;
         }
-
-        .nav-button::before {
-            content: "";
-            position: absolute;
-            inset: 4px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* Images inside navigation buttons */
 
         .nav-button img {
-            display: block;
-            width: 75%;
-            height: 75%;
-            object-fit: cover;
-            object-position: center;
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
             border-radius: 50%;
+            pointer-events: none;
         }
 
         .nav-button:hover {
-            background: rgba(112, 126, 145, 0.9);
+            transform: scale(1.13);
+            background: rgba(190, 175, 235, 0.20);
+
             box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.45),
-                0 0 18px rgba(190, 202, 218, 0.18),
-                inset 0 1px 3px rgba(255, 255, 255, 0.3);
+                0 0 22px rgba(160, 130, 240, 0.30),
+                inset 0 0 12px rgba(255,255,255,0.12);
         }
 
-        /* Five evenly distributed buttons */
+        /* Button positions */
 
-        /* Top */
         .nav-button:nth-of-type(1) {
-            transform: rotate(0deg) translateY(-175px) rotate(0deg);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
-
-        /* Bottom Right */
-        .nav-button:nth-of-type(2) {
-            transform: rotate(72deg) translateY(-175px) rotate(-72deg);
-        }
-
-        /* Bottom Left */
-        .nav-button:nth-of-type(3) {
-            transform: rotate(144deg) translateY(-175px) rotate(-144deg);
-        }
-
-        /* Middle Left */
-        .nav-button:nth-of-type(4) {
-            transform: rotate(216deg) translateY(-175px) rotate(-216deg);
-        }
-
-        /* Middle Right */
-        .nav-button:nth-of-type(5) {
-            transform: rotate(288deg) translateY(-175px) rotate(-288deg);
-        }
-
-        /* Hover effects */
 
         .nav-button:nth-of-type(1):hover {
-            transform: rotate(0deg) translateY(-175px) rotate(0deg) scale(1.1);
+            transform: translateX(-50%) scale(1.13);
         }
 
-        .nav-button:nth-of-type(2):hover {
-            transform: rotate(72deg) translateY(-175px) rotate(-72deg) scale(1.1);
+        .nav-button:nth-of-type(2) {
+            top: 24%;
+            right: 0;
         }
 
-        .nav-button:nth-of-type(3):hover {
-            transform: rotate(144deg) translateY(-175px) rotate(-144deg) scale(1.1);
+        .nav-button:nth-of-type(3) {
+            bottom: 5%;
+            right: 14%;
         }
 
-        .nav-button:nth-of-type(4):hover {
-            transform: rotate(216deg) translateY(-175px) rotate(-216deg) scale(1.1);
+        .nav-button:nth-of-type(4) {
+            bottom: 5%;
+            left: 14%;
         }
 
-        .nav-button:nth-of-type(5):hover {
-            transform: rotate(288deg) translateY(-175px) rotate(-288deg) scale(1.1);
+        .nav-button:nth-of-type(5) {
+            top: 24%;
+            left: 0;
         }
 
-        /* Mobile */
+        /* NEXUS label */
+
+        .site-label {
+            position: absolute;
+            bottom: 35px;
+            text-align: center;
+            color: rgba(220, 220, 235, 0.55);
+            letter-spacing: 7px;
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        /* Email Modal */
+
+        .email-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, 0.70);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+
+        .email-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .email-modal {
+            width: 100%;
+            max-width: 410px;
+            position: relative;
+
+            padding: 42px 30px 32px;
+            text-align: center;
+
+            border-radius: 24px;
+            border: 1px solid rgba(210, 205, 235, 0.22);
+
+            background: linear-gradient(
+                145deg,
+                rgba(45, 43, 57, 0.88),
+                rgba(12, 12, 18, 0.94)
+            );
+
+            box-shadow:
+                0 20px 80px rgba(0,0,0,0.65),
+                inset 0 1px 1px rgba(255,255,255,0.12);
+
+            transform: translateY(25px) scale(0.94);
+            transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .email-overlay.active .email-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 17px;
+
+            width: 32px;
+            height: 32px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.7);
+
+            font-size: 21px;
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.16);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .email-icon {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            border: 1px solid rgba(205,190,255,0.35);
+
+            background: rgba(150,125,220,0.12);
+
+            box-shadow:
+                0 0 30px rgba(145,110,230,0.18);
+        }
+
+        .email-icon svg {
+            width: 31px;
+            height: 31px;
+            fill: none;
+            stroke: #d6c9ff;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .email-modal h2 {
+            font-size: 23px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: #f0edf8;
+        }
+
+        .email-description {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(225,220,240,0.60);
+            margin-bottom: 26px;
+        }
+
+        .email-address {
+            padding: 14px 10px;
+            margin-bottom: 22px;
+
+            border-radius: 12px;
+            border: 1px solid rgba(220,215,240,0.13);
+
+            background: rgba(255,255,255,0.045);
+
+            color: #e5ddff;
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        .email-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .email-action {
+            width: 100%;
+            padding: 13px;
+
+            border-radius: 12px;
+            border: 1px solid rgba(210,200,240,0.2);
+
+            font-size: 13px;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .copy-button {
+            color: #eee8ff;
+            background: rgba(155,130,220,0.17);
+        }
+
+        .copy-button:hover {
+            background: rgba(155,130,220,0.30);
+            box-shadow: 0 0 20px rgba(150,120,230,0.15);
+        }
+
+        .send-button {
+            color: #17141e;
+            background: linear-gradient(
+                110deg,
+                #d9d1ed,
+                #aaa0c9
+            );
+            border: none;
+        }
+
+        .send-button:hover {
+            filter: brightness(1.13);
+            box-shadow: 0 0 22px rgba(190,175,235,0.22);
+        }
+
+        .email-footer {
+            margin-top: 25px;
+            font-size: 11px;
+            letter-spacing: 0.4px;
+            color: rgba(220,215,235,0.42);
+        }
+
+        .copy-message {
+            height: 16px;
+            margin-top: 12px;
+            font-size: 11px;
+            color: #c9b9ff;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .copy-message.show {
+            opacity: 1;
+        }
+
+        /* Responsive */
 
         @media (max-width: 600px) {
 
+            .orbit-container {
+                width: 330px;
+                height: 330px;
+            }
+
             .center-circle {
-                width: 120px;
-                height: 120px;
+                width: 135px;
+                height: 135px;
+            }
+
+            .orbit {
+                width: 285px;
+                height: 285px;
             }
 
             .nav-button {
-                width: 68px;
-                height: 68px;
+                width: 61px;
+                height: 61px;
+            }
+
+            .nav-button:nth-of-type(2),
+            .nav-button:nth-of-type(5) {
+                top: 24%;
+            }
+
+            .nav-button:nth-of-type(3),
+            .nav-button:nth-of-type(4) {
+                bottom: 5%;
+            }
+
+            .email-modal {
+                max-width: 350px;
+                padding: 38px 22px 27px;
+            }
+
+            .site-label {
+                bottom: 20px;
                 font-size: 10px;
             }
+        }
 
-            .nav-button:nth-of-type(1) {
-                transform: rotate(0deg) translateY(-125px) rotate(0deg);
+        @media (max-width: 360px) {
+            .orbit-container {
+                transform: scale(0.88);
+            }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .orbit-container {
+                transform: scale(0.75);
             }
 
-            .nav-button:nth-of-type(2) {
-                transform: rotate(72deg) translateY(-125px) rotate(-72deg);
-            }
-
-            .nav-button:nth-of-type(3) {
-                transform: rotate(144deg) translateY(-125px) rotate(-144deg);
-            }
-
-            .nav-button:nth-of-type(4) {
-                transform: rotate(216deg) translateY(-125px) rotate(-216deg);
-            }
-
-            .nav-button:nth-of-type(5) {
-                transform: rotate(288deg) translateY(-125px) rotate(-288deg);
-            }
-
-            /* Mobile hover effects */
-
-            .nav-button:nth-of-type(1):hover {
-                transform: rotate(0deg) translateY(-125px) rotate(0deg) scale(1.1);
-            }
-
-            .nav-button:nth-of-type(2):hover {
-                transform: rotate(72deg) translateY(-125px) rotate(-72deg) scale(1.1);
-            }
-
-            .nav-button:nth-of-type(3):hover {
-                transform: rotate(144deg) translateY(-125px) rotate(-144deg) scale(1.1);
-            }
-
-            .nav-button:nth-of-type(4):hover {
-                transform: rotate(216deg) translateY(-125px) rotate(-216deg) scale(1.1);
-            }
-
-            .nav-button:nth-of-type(5):hover {
-                transform: rotate(288deg) translateY(-125px) rotate(-288deg) scale(1.1);
+            .site-label {
+                display: none;
             }
         }
 
@@ -244,102 +468,322 @@
 
 <body>
 
-    <main class="main">
+    <!-- Liquid Metal Effect -->
 
-        <!-- Liquid Metal Background -->
+    <div
+        data-aifx="liquid-metal"
+        data-aifx-bg="#050505"
+        data-aifx-speed="0.25"
+        data-aifx-scale="1.25"
+        data-aifx-warp="0.7"
+    ></div>
 
-        <div
-            data-aifx="liquid-metal"
-            data-aifx-speed="0.25"
-            data-aifx-mouse="0"
-            style="
-                position: absolute;
-                inset: 0;
-                z-index: -1;
-            "
-        ></div>
+    <main class="main-container">
 
-        <!-- Navigation -->
+        <div class="orbit-container">
 
-        <div class="navigation">
+            <div class="orbit"></div>
 
-            <!-- Center Profile Image -->
+            <!-- Center Image -->
 
             <div class="center-circle">
                 <img
                     src="Assets/file_00000000577c820aa374caf6c67715aa.png"
-                    alt="Nexus"
+                    alt="NEXUS"
                 >
             </div>
 
-            <!-- Top -->
+            <!-- Top Button -->
 
-            <button class="nav-button" aria-label="Navigation 1">
+            <a
+                class="nav-button"
+                href="#"
+                aria-label="Top navigation"
+            >
                 <img
                     src="Assets/IMG_db45c11d-e28c-4dd8-95da-6f7f124c09cc.png"
-                    alt="Navigation 1"
+                    alt=""
                 >
-            </button>
+            </a>
 
-            <!-- Bottom Right - GitHub -->
+            <!-- Middle Right Button -->
 
-            <button
+            <a
                 class="nav-button"
-                aria-label="GitHub"
-                onclick="window.open('https://github.com/MrQRZ-01', '_blank')"
+                href="#"
+                aria-label="Navigation"
             >
                 <img
-                    src="Assets/IMG_6fe6a0f1-5c10-452c-b111-042d007111ef-removebg-preview.png"
-                    alt="GitHub"
+                    src="Assets/IMG_a0c033b3-e98e-469d-91c4-77e73788eeae.png"
+                    alt=""
                 >
-            </button>
+            </a>
 
-            <!-- Bottom Left - Resume -->
+            <!-- Bottom Right: Resume -->
 
-            <button
+            <a
                 class="nav-button"
+                href="https://mrqrz-01.github.io/Resume/Asset/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Resume"
-                onclick="window.open('https://mrqrz-01.github.io/Resume/Asset/Resume.pdf', '_blank')"
             >
                 <img
-                    src="Assets/IMG_2f2a3861-0c96-4c0e-a4e1-b316c691cf65-removebg-preview.png"
-                    alt="Resume"
+                    src="Assets/IMG_2f2a3861-0c96-4c0e-a4e1-b316c691cf65.webp"
+                    alt=""
                 >
-            </button>
+            </a>
 
-            <!-- Middle Left - Discord -->
+            <!-- Bottom Left: GitHub -->
+
+            <a
+                class="nav-button"
+                href="https://github.com/MrQRZ-01"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+            >
+                <img
+                    src="Assets/IMG_6fe6a0f1-5c10-452c-b111-042d007111ef.png"
+                    alt=""
+                >
+            </a>
+
+            <!-- Middle Left: Email -->
 
             <button
                 class="nav-button"
-                aria-label="Discord"
-                onclick="window.open('https://discord.com/users/1180407612823576617', '_blank')"
+                id="emailButton"
+                type="button"
+                aria-label="Email"
             >
                 <img
-                    src="Assets/IMG_a0c033b3-e98e-469d-91c4-77e73788eeae-removebg-preview.png"
-                    alt="Discord"
-                >
-            </button>
-
-            <!-- Middle Right - Telegram -->
-
-            <button
-                class="nav-button"
-                aria-label="Telegram"
-                onclick="window.open('https://t.me/Noone6201', '_blank')"
-            >
-                <img
-                    src="Assets/IMG_13e736d6-caf9-47fa-84be-ae8eab985e94-removebg-preview.png"
-                    alt="Telegram"
+                    src="Assets/IMG_13e736d6-caf9-47fa-84be-ae8eab985e94.png"
+                    alt=""
                 >
             </button>
 
         </div>
+
+        <div class="site-label">
+            N E X U S
+        </div>
+
     </main>
 
-    <script
-        src="https://cdn.aidesigner.ai/effects/runtime/v1.js"
-        defer
-    ></script>
+
+    <!-- Email Modal -->
+
+    <div
+        class="email-overlay"
+        id="emailOverlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="email-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="emailTitle"
+        >
+
+            <button
+                class="close-modal"
+                id="closeEmail"
+                type="button"
+                aria-label="Close"
+            >
+                &times;
+            </button>
+
+            <div class="email-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <rect
+                        x="2.5"
+                        y="4.5"
+                        width="19"
+                        height="15"
+                        rx="2"
+                    />
+                    <path d="M3.5 6L12 13L20.5 6" />
+                </svg>
+
+            </div>
+
+            <h2 id="emailTitle">
+                Get in Touch
+            </h2>
+
+            <p class="email-description">
+                Have a project in mind?
+                Let's build something extraordinary.
+            </p>
+
+            <div
+                class="email-address"
+                id="emailAddress"
+            >
+                YOUR_EMAIL@example.com
+            </div>
+
+            <div class="email-actions">
+
+                <button
+                    class="email-action copy-button"
+                    id="copyEmail"
+                    type="button"
+                >
+                    Copy Email
+                </button>
+
+                <button
+                    class="email-action send-button"
+                    id="sendEmail"
+                    type="button"
+                >
+                    Send Email
+                </button>
+
+            </div>
+
+            <div
+                class="copy-message"
+                id="copyMessage"
+                aria-live="polite"
+            >
+                Email copied successfully
+            </div>
+
+            <div class="email-footer">
+                NEXUS — Let's create something great.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Scripts -->
+
+    <script>
+
+        // Email configuration
+
+        const MY_EMAIL = "YOUR_EMAIL@example.com";
+
+        const emailButton = document.getElementById("emailButton");
+        const emailOverlay = document.getElementById("emailOverlay");
+        const closeEmail = document.getElementById("closeEmail");
+        const copyEmail = document.getElementById("copyEmail");
+        const sendEmail = document.getElementById("sendEmail");
+        const copyMessage = document.getElementById("copyMessage");
+
+        // Open modal
+
+        function openEmailModal() {
+            emailOverlay.classList.add("active");
+            emailOverlay.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            closeEmail.focus();
+        }
+
+        // Close modal
+
+        function closeEmailModal() {
+            emailOverlay.classList.remove("active");
+            emailOverlay.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            copyMessage.classList.remove("show");
+            emailButton.focus();
+        }
+
+        emailButton.addEventListener("click", openEmailModal);
+
+        closeEmail.addEventListener("click", closeEmailModal);
+
+        // Close by clicking outside
+
+        emailOverlay.addEventListener("click", function(event) {
+            if (event.target === emailOverlay) {
+                closeEmailModal();
+            }
+        });
+
+        // Close with Escape
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                event.key === "Escape" &&
+                emailOverlay.classList.contains("active")
+            ) {
+                closeEmailModal();
+            }
+        });
+
+        // Copy email
+
+        copyEmail.addEventListener("click", async function() {
+
+            try {
+                await navigator.clipboard.writeText(MY_EMAIL);
+
+                copyMessage.textContent = "Email copied successfully";
+                copyMessage.classList.add("show");
+
+                copyEmail.textContent = "Copied!";
+
+                setTimeout(function() {
+                    copyEmail.textContent = "Copy Email";
+                }, 1800);
+
+            } catch (error) {
+
+                const temporaryInput = document.createElement("textarea");
+
+                temporaryInput.value = MY_EMAIL;
+                temporaryInput.style.position = "fixed";
+                temporaryInput.style.opacity = "0";
+
+                document.body.appendChild(temporaryInput);
+
+                temporaryInput.select();
+
+                const successful = document.execCommand("copy");
+
+                temporaryInput.remove();
+
+                if (successful) {
+                    copyMessage.textContent = "Email copied successfully";
+                    copyMessage.classList.add("show");
+                } else {
+                    copyMessage.textContent = "Please copy the email manually";
+                    copyMessage.classList.add("show");
+                }
+            }
+
+        });
+
+        // Send email
+
+        sendEmail.addEventListener("click", function() {
+
+            const subject = encodeURIComponent("Hello from NEXUS");
+
+            window.location.href =
+                "mailto:" + MY_EMAIL + "?subject=" + subject;
+
+        });
+
+        // Display configured email
+
+        document.getElementById("emailAddress").textContent = MY_EMAIL;
+
+    </script>
+
+    <!-- Liquid Metal Runtime -->
+
+    <script src="https://cdn.aidesigner.ai/effects/runtime/v1.js"></script>
 
 </body>
 </html>
