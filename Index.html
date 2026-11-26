@@ -113,6 +113,17 @@
             z-index: 2;
         }
 
+        /* Smaller images inside navigation buttons */
+
+        .nav-button img {
+            display: block;
+            width: 75%;
+            height: 75%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+        }
+
         .nav-button:hover {
             background: rgba(112, 126, 145, 0.9);
             box-shadow:
@@ -121,35 +132,29 @@
                 inset 0 1px 3px rgba(255, 255, 255, 0.3);
         }
 
-        /* Top button image */
-
-        .nav-button img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 50%;
-        }
-
         /* Five evenly distributed buttons */
 
+        /* Top */
         .nav-button:nth-of-type(1) {
             transform: rotate(0deg) translateY(-175px) rotate(0deg);
         }
 
+        /* Bottom Right */
         .nav-button:nth-of-type(2) {
             transform: rotate(72deg) translateY(-175px) rotate(-72deg);
         }
 
+        /* Bottom Left */
         .nav-button:nth-of-type(3) {
             transform: rotate(144deg) translateY(-175px) rotate(-144deg);
         }
 
+        /* Middle Left */
         .nav-button:nth-of-type(4) {
             transform: rotate(216deg) translateY(-175px) rotate(-216deg);
         }
 
+        /* Middle Right */
         .nav-button:nth-of-type(5) {
             transform: rotate(288deg) translateY(-175px) rotate(-288deg);
         }
@@ -179,6 +184,7 @@
         /* Mobile */
 
         @media (max-width: 600px) {
+
             .center-circle {
                 width: 120px;
                 height: 120px;
@@ -232,6 +238,7 @@
                 transform: rotate(288deg) translateY(-125px) rotate(-288deg) scale(1.1);
             }
         }
+
     </style>
 </head>
 
@@ -240,6 +247,7 @@
     <main class="main">
 
         <!-- Liquid Metal Background -->
+
         <div
             data-aifx="liquid-metal"
             data-aifx-speed="0.25"
@@ -252,9 +260,11 @@
         ></div>
 
         <!-- Navigation -->
+
         <div class="navigation">
 
             <!-- Center Profile Image -->
+
             <div class="center-circle">
                 <img
                     src="Assets/file_00000000577c820aa374caf6c67715aa.png"
@@ -262,9 +272,8 @@
                 >
             </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Top -->
 
-            <!-- Top Button With Image -->
             <button class="nav-button" aria-label="Navigation 1">
                 <img
                     src="Assets/IMG_db45c11d-e28c-4dd8-95da-6f7f124c09cc.png"
@@ -272,10 +281,41 @@
                 >
             </button>
 
-            <button class="nav-button" aria-label="Navigation 2"></button>
-            <button class="nav-button" aria-label="Navigation 3"></button>
-            <button class="nav-button" aria-label="Navigation 4"></button>
-            <button class="nav-button" aria-label="Navigation 5"></button>
+            <!-- Bottom Right -->
+
+            <button class="nav-button" aria-label="Navigation 2">
+                <img
+                    src="Assets/IMG_6fe6a0f1-5c10-452c-b111-042d007111ef.png"
+                    alt="Navigation 2"
+                >
+            </button>
+
+            <!-- Bottom Left -->
+
+            <button class="nav-button" aria-label="Navigation 3">
+                <img
+                    src="Assets/IMG_2f2a3861-0c96-4c0e-a4e1-b316c691cf65.webp"
+                    alt="Navigation 3"
+                >
+            </button>
+
+            <!-- Middle Left -->
+
+            <button class="nav-button" aria-label="Navigation 4">
+                <img
+                    src="Assets/IMG_a0c033b3-e98e-469d-91c4-77e73788eeae.png"
+                    alt="Navigation 4"
+                >
+            </button>
+
+            <!-- Middle Right -->
+
+            <button class="nav-button" aria-label="Navigation 5">
+                <img
+                    src="Assets/IMG_13e736d6-caf9-47fa-84be-ae8eab985e94.png"
+                    alt="Navigation 5"
+                >
+            </button>
 
         </div>
     </main>
